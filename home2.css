@@ -1,0 +1,313 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap');
+
+body {
+  background-color: #262C34;
+  color: #F4F4F4;
+  padding-top: 240px; 
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+main {
+  padding-bottom: 60px; 
+}
+/*Header Formatting*/
+header {
+  background: url('HeaderCut.png') no-repeat center center;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  text-align: right;
+  z-index: 10;
+}
+/*Avotech Label Formatting*/
+#headline {
+	position: fixed;
+	top: 180px;
+	left: 50px;	
+}
+#headline h4 {
+  font-family: 'Libre Barcode 128 Text', sans-serif;
+  font-size: 3em;
+  font-weight: 100;
+  color: #3c444f;
+  margin: 0;
+}
+/*Profile Photo Formatting*/
+#profile_photo {
+  margin: 5px;
+ }
+/*Profile photo Styling*/
+#profile_photo img {
+  height: 150px; 
+  width: 150px;
+  object-fit: cover;
+  outline-color: darkslategray;
+  outline-style: groove;
+  outline-width: 3px;
+  filter:grayscale(100%);
+}
+/*Contact Info Styling*/
+#contact_info h5, #contact_info h6 {
+  position: relative;
+  margin: 0;
+  text-align: right;
+}
+#contact_info h5 {
+	font-family: 'Raleway', sans-serif; 
+	color: #C1354E;
+	font-size: 1.6em;
+	text-shadow: maroon 1px 1px 1px;
+ }
+#contact_info h6 {
+	color: #C1354E;
+	font-size: .8em;
+	font-weight: bold;               ;
+	text-shadow: white 1px 1px 1px;
+}
+/*Container Layout*/
+.container {
+  display: flex;
+  flex-grow: 1;
+  max-width: auto;
+  margin: 0 auto;
+}
+/*Base Column Layout*/
+.column {
+	width: auto;
+  }
+/*Layouts that apply to colRight and colLeft*/
+#leftCol, #rightCol {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  width: auto;
+  margin: 0;
+}
+/*Layout for Left Column*/
+#leftCol {
+	justify-content: flex-start;
+	text-align: justify-all;	
+}
+/*Content Boxes Inside Column*/
+#leftCol {
+	padding-left: 20px;
+    padding-right: 20px;
+}
+/*Body Styles*/
+body h1 {
+	color: #C1354E;
+	text-shadow: white 1px 1px 1px;
+	text-align: center;
+}
+/*Resets #skills padding to zero to left justify list*/
+#skills ul  {
+	margin: 0;
+	padding: 0;
+}
+#skills ul li {
+	list-style: circle;
+	text-shadow: 1px 1px 1px red;
+}
+/*Center Column Layout*/
+#centerCol {
+  flex: 0 0 50%;
+  background-color: #F4F4F4;
+  color: #262C34;
+  padding: 15px;
+}
+/*Table Styling*/
+#portfolioTable {
+	margin-bottom: 45px;
+}
+#portfolioTable h1 {
+	text-shadow: maroon 1px 1px 1px;
+}
+th, td {
+	border-bottom: 1px solid #262c34;
+}
+td {
+	border-left: 1px solid #262c34;
+}
+th {
+	text-align: left;
+	color: maroon;
+	text-shadow: black 1px 1px 1px;
+}
+/*Embedded Media Layout and Stylings*/
+.mediaContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.mediaItem {
+    flex: 1 1 45%; 
+    margin: 10px;
+    text-align: center;
+}
+
+#spotify_caption, #youtube_caption {
+    margin-bottom: 10px;
+}
+
+iframe {
+    width: 100%; 
+    border-radius: 12px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .mediaContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mediaItem {
+        flex-basis: 100%; 
+    }
+}
+/*Links Stylings*/
+#Links {
+	margin: 0px;
+	padding: 0px;
+}
+a {
+  color: #F04C50;
+  text-decoration: none; 
+  transition: color 0.3s ease;
+}
+a:hover, a:focus {
+  color: #C1354E;
+  text-decoration: underline; 
+}
+/*Footer Layout*/
+footer {
+  background: #3c444f;
+  color: white;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 10;
+  height: 50px;
+}
+
+footer h1 {
+  margin: 0;
+}
+#footertext1 {
+  position: relative;
+  margin: 0;
+  text-align: left;
+  font-size: 8px;	
+}
+#footertext2 {
+	position: fixed;
+	bottom: 0px;
+	right: 5px;
+}
+#footertext2 img {
+  height: 42px; 
+  width: 42px;
+  object-fit: fill;
+	}
+#middlefooter {
+  position: fixed;
+  left: 500px;
+  bottom: 1px;
+}
+@media (max-width: 768px) {
+   body {
+   padding-top: 20px;
+	}
+  header, footer {
+    position: static;
+  }
+}
+  main {
+    padding-top: 20px;
+}
+/*Form Stylings*/
+#contactForm {
+    background-color: #3C444F;
+    padding: 20px;
+    border-radius: 8px;
+    color: #F4F4F4;
+    width: 250px;
+    margin: auto;
+	max-width: 600px;
+}
+#contactForm label {
+    margin-top: 10px;
+    display: flex;
+	flex-flow: wrap;
+	justify-content: flex-start;
+}
+
+#contactForm input, #contactForm textarea {
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box; 
+    border-radius: 4px;
+    border: 1px solid #262C34;
+    background-color: #262C34;
+    color: #F4F4F4;
+}
+#contactForm textarea {
+	width: 100%;
+}
+#contactForm input {
+	width: auto;
+}
+#contactForm #subject {
+	text-align: left;
+}
+#contactForm #subject label {
+	margin-bottom: 10px;
+	text-align: left;
+}
+#contactForm button {
+    background-color: #F04C50;
+    color: #FFF;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+#contactForm #subject input[type="checkbox"] {
+	margin-right: 5px;
+}
+#contactForm button:hover {
+    background-color: #C1354E;
+}
+/*Styling for mobile*/
+@media only screen and (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    header, footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    header {
+        top: 0;
+    }
+    footer {
+        bottom: 0;
+    }
+}
