@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WWE 2K25 Universe Tracker</title>
+  <link rel="stylesheet" href="universe-tracker.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>WWE 2K25 Universe Tracker</h1>
+    <p>Keep tabs on every show, rivalry, champion, and premium live event in your custom Universe mode.</p>
+    <div class="header-actions">
+      <button id="exportData" type="button">Export Universe JSON</button>
+      <label class="import-label" for="importData">Import Save
+        <input id="importData" type="file" accept="application/json">
+      </label>
+      <button id="resetData" class="danger" type="button">Reset All Data</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="overview-title">
+      <div class="section-header">
+        <h2 id="overview-title">Universe Overview</h2>
+        <p class="section-subtitle">Track the big picture details for your save.</p>
+      </div>
+      <form id="overviewForm" class="form-grid">
+        <label for="universeName">Universe Name</label>
+        <input id="universeName" name="universeName" type="text" placeholder="Multiverse Mayhem">
+
+        <label for="currentWeek">Current Week</label>
+        <input id="currentWeek" name="currentWeek" type="text" placeholder="Week 4, April 2025">
+
+        <label for="owner">General Manager</label>
+        <input id="owner" name="owner" type="text" placeholder="You">
+
+        <label for="overviewNotes">Notes</label>
+        <textarea id="overviewNotes" name="overviewNotes" rows="3" placeholder="Current story beats, seasonal goals, or roster rules."></textarea>
+
+        <button type="submit">Save Overview</button>
+      </form>
+      <div id="overviewSummary" class="summary"></div>
+    </section>
+
+    <section class="card" aria-labelledby="shows-title">
+      <div class="section-header">
+        <h2 id="shows-title">Weekly Shows</h2>
+        <p class="section-subtitle">Document every brand and its broadcast details.</p>
+      </div>
+      <form id="showForm" class="form-grid">
+        <label for="showName">Show Name</label>
+        <input id="showName" name="showName" type="text" required placeholder="Monday Night RAW">
+
+        <label for="showDay">Broadcast Day</label>
+        <input id="showDay" name="showDay" type="text" required placeholder="Mondays">
+
+        <label for="showArena">Arena</label>
+        <input id="showArena" name="showArena" type="text" placeholder="Capitol Wrestling Center">
+
+        <label for="showColor">Brand Color</label>
+        <input id="showColor" name="showColor" type="color" value="#ff0000">
+
+        <label for="showNotes">Show Focus</label>
+        <textarea id="showNotes" name="showNotes" rows="2" placeholder="Main event scene, rivalries, or unique match types."></textarea>
+
+        <button type="submit">Add Show</button>
+      </form>
+      <div id="showsList" class="card-list" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="roster-title">
+      <div class="section-header">
+        <h2 id="roster-title">Roster</h2>
+        <p class="section-subtitle">Assign Superstars to brands and note their status.</p>
+      </div>
+      <form id="superstarForm" class="form-grid">
+        <label for="superstarName">Superstar</label>
+        <input id="superstarName" name="superstarName" type="text" required placeholder="Cody Rhodes">
+
+        <label for="assignedShow">Assigned Show</label>
+        <select id="assignedShow" name="assignedShow" required>
+          <option value="">Select a show</option>
+        </select>
+
+        <label for="superstarAlignment">Alignment</label>
+        <select id="superstarAlignment" name="superstarAlignment">
+          <option value="Face">Face</option>
+          <option value="Heel">Heel</option>
+          <option value="Tweener">Tweener</option>
+        </select>
+
+        <label for="superstarStatus">Current Status</label>
+        <input id="superstarStatus" name="superstarStatus" type="text" placeholder="#1 Contender, Injured, Manager">
+
+        <label for="superstarNotes">Notes</label>
+        <textarea id="superstarNotes" name="superstarNotes" rows="2" placeholder="Signature moves, storyline beats, factions."></textarea>
+
+        <button type="submit">Add Superstar</button>
+      </form>
+      <div class="filter-bar">
+        <label for="showFilter">Filter by Show:</label>
+        <select id="showFilter">
+          <option value="">All Shows</option>
+        </select>
+      </div>
+      <div id="superstarList" class="card-list" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="championships-title">
+      <div class="section-header">
+        <h2 id="championships-title">Championships</h2>
+        <p class="section-subtitle">Track title lineages and current champions.</p>
+      </div>
+      <form id="championshipForm" class="form-grid">
+        <label for="titleName">Title Name</label>
+        <input id="titleName" name="titleName" type="text" required placeholder="WWE Championship">
+
+        <label for="titleShow">Defended On</label>
+        <select id="titleShow" name="titleShow" required>
+          <option value="">Select a show</option>
+        </select>
+
+        <label for="currentChampion">Current Champion(s)</label>
+        <input id="currentChampion" name="currentChampion" type="text" required placeholder="Seth Rollins">
+
+        <label for="titleNotes">Reign Details</label>
+        <textarea id="titleNotes" name="titleNotes" rows="2" placeholder="Won at SummerSlam vs. Drew McIntyre"></textarea>
+
+        <button type="submit">Add Championship</button>
+      </form>
+      <div id="championshipList" class="card-list" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="rivalries-title">
+      <div class="section-header">
+        <h2 id="rivalries-title">Rivalries & Storylines</h2>
+        <p class="section-subtitle">Keep story notes handy for week-to-week booking.</p>
+      </div>
+      <form id="rivalryForm" class="form-grid">
+        <label for="rivalryShow">Show</label>
+        <select id="rivalryShow" name="rivalryShow" required>
+          <option value="">Select a show</option>
+        </select>
+
+        <label for="rivalryParticipants">Participants</label>
+        <input id="rivalryParticipants" name="rivalryParticipants" type="text" required placeholder="Bianca Belair vs. Rhea Ripley">
+
+        <label for="rivalryStart">Started</label>
+        <input id="rivalryStart" name="rivalryStart" type="text" placeholder="Week 1, April 2025">
+
+        <label for="rivalryStatus">Status</label>
+        <select id="rivalryStatus" name="rivalryStatus">
+          <option value="Active">Active</option>
+          <option value="Hiatus">Hiatus</option>
+          <option value="Ended">Ended</option>
+        </select>
+
+        <label for="rivalryNotes">Story Beats</label>
+        <textarea id="rivalryNotes" name="rivalryNotes" rows="2" placeholder="Double count-out finish sets up Steel Cage match."></textarea>
+
+        <button type="submit">Add Rivalry</button>
+      </form>
+      <div id="rivalryList" class="card-list" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="events-title">
+      <div class="section-header">
+        <h2 id="events-title">Premium Live Events</h2>
+        <p class="section-subtitle">Log card details and memorable results.</p>
+      </div>
+      <form id="eventForm" class="form-grid">
+        <label for="eventName">Event Name</label>
+        <input id="eventName" name="eventName" type="text" required placeholder="SummerSlam">
+
+        <label for="eventDate">Date</label>
+        <input id="eventDate" name="eventDate" type="date">
+
+        <label for="eventLocation">Location</label>
+        <input id="eventLocation" name="eventLocation" type="text" placeholder="Detroit, MI">
+
+        <label for="eventHighlights">Highlights & Results</label>
+        <textarea id="eventHighlights" name="eventHighlights" rows="3" placeholder="Roman Reigns def. Cody Rhodes – Undisputed WWE Title"></textarea>
+
+        <button type="submit">Add Event</button>
+      </form>
+      <div id="eventList" class="card-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Data is saved locally in your browser so you can update the Universe after every session.</p>
+  </footer>
+
+  <dialog id="toast" aria-live="polite"></dialog>
+
+  <script src="universe-tracker.js"></script>
+</body>
+</html>
