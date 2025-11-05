@@ -1,5 +1,21 @@
 """Ella Prototype package."""
 
-from .chatbot import EllaChatbot
+from .chatbot import (
+    CommandRouter,
+    CreativeEngine,
+    EllaChatbot,
+    EllaBrain,
+    EmotionState,
+    ResponsePayload,
+    VoiceEngine,
+)
 
-__all__ = ["EllaChatbot"]
+__all__ = [
+    "CommandRouter",
+    "CreativeEngine",
+    "EllaBrain",
+    "EllaChatbot",
+    "EmotionState",
+    "ResponsePayload",
+    "VoiceEngine",
+]
