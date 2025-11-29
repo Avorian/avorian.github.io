@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oracle Overlay</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: rgba(0, 0, 0, 0.8);
+        color: #e0e0e0;
+        margin: 0;
+        padding: 1rem;
+      }
+      #log {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Oracle Overlay (Prototype)</h3>
+    <div id="log">Connecting...</div>
+    <script>
+      const logEl = document.getElementById('log');
+      const ws = new WebSocket(`ws://${location.host}/ws`);
+
+      function addLine(text) {
+        logEl.textContent = `${text}\n${logEl.textContent}`;
+      }
+
+      ws.onopen = () => addLine('Overlay connected');
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.event === 'oracle_reply') {
+            addLine(`Oracle: ${data.payload.text}`);
+          } else {
+            addLine(`Event ${data.event}: ${JSON.stringify(data.payload)}`);
+          }
+        } catch (err) {
+          addLine(`Raw: ${event.data}`);
+        }
+      };
+
+      ws.onclose = () => addLine('Overlay disconnected');
+    </script>
+  </body>
+</html>
